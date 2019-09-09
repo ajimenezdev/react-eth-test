@@ -1,14 +1,43 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
-import "../../App.css";
+import { Paper, Badge } from "@material-ui/core";
+import "./addressSummary.css";
 
-const AddressSummary: React.FC = () => {
+interface SummaryProps {
+  address: string;
+  network: string;
+  balance: number;
+  onAddressClick: Function;
+}
+
+const AddressSummary: React.FC<SummaryProps> = ({
+  address,
+  network,
+  balance,
+  onAddressClick
+}) => {
+  const badgeText = network === "Mainnet" ? "Main" : "Test";
+
   return (
-    <div className="body-summary">
-      <Paper>
-        <p>Address Summary</p>
-      </Paper>
-    </div>
+    <Paper className="body-summary">
+      {/* Do not display badge if no network selected */}
+      {network && (
+        <Badge
+          badgeContent={badgeText}
+          color="primary"
+          className="summary-badge"
+        >
+          <div></div>
+        </Badge>
+      )}
+      <div className="summary-addressContainer">
+        <p>Address:</p>
+        <p onClick={() => onAddressClick()}>{address}</p>
+      </div>
+      <div className="summary-balanceContainer">
+        <p>Balance:</p>
+        <p>{balance}</p>
+      </div>
+    </Paper>
   );
 };
 

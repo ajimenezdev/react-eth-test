@@ -1,13 +1,22 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 
-const TransactionsList: React.FC = () => {
+interface ListProps {
+  transactions: Array<any>;
+}
+
+const TransactionsList: React.FC<ListProps> = ({ transactions }) => {
   return (
-    <div className="body-list">
-      <Paper>
-        <p>Transactions List</p>
-      </Paper>
-    </div>
+    <Paper className="body-list">
+      <p>Transactions List</p>
+      <ul>
+        {transactions.map(t => (
+          <li key={t.hash}>
+            {t.nonce} - {t.hash} - {t.from} => {t.to} ({t.value})
+          </li>
+        ))}
+      </ul>
+    </Paper>
   );
 };
 
