@@ -1,18 +1,58 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
+import { Paper, List, ListItem } from "@material-ui/core";
+import web3 from "web3";
+import { getTransactionURL, getAddressURL } from "../../data/ethereumData";
+
+import "./transactionsList.css";
 
 interface ListProps {
   transactions: Array<any>;
+  network: string;
 }
 
-const TransactionsList: React.FC<ListProps> = ({ transactions }) => {
+const TransactionsList: React.FC<ListProps> = ({ transactions, network }) => {
   return (
     <Paper className="body-list">
-      <p>Transactions List</p>
-      <ul>
+      <ul className="list">
+        <li key="header" className="list-item list-header">
+          <span className="list-nonce">Nonce</span>
+          <span className="list-hash">T.Hash</span>
+          <span className="list-from">From</span>
+          <span className="list-to">To</span>
+          <span className="list-value">Value</span>
+        </li>
         {transactions.map(t => (
-          <li key={t.hash}>
-            {t.nonce} - {t.hash} - {t.from} => {t.to} ({t.value})
+          <li key={t.hash} className="list-item">
+            <span className="list-nonce">{t.nonce}</span>
+            <a
+              href={getTransactionURL(t.hash, network)}
+              target="_blank"
+              className="list-hash"
+            >
+              {t.hash}
+            </a>
+            <span className="list-from">
+              <a
+                href={getAddressURL(t.from || t.contractAddress, network)}
+                target="_blank"
+                className="list-hash"
+              >
+                {t.from}
+              </a>
+            </span>
+            <span className="list-to">
+              <a
+                href={getAddressURL(t.to || t.contractAddress, network)}
+                target="_blank"
+                className="list-hash"
+              >
+                {t.to || `Contract(${t.contractAddress})`}
+              </a>
+            </span>
+
+            <span className="list-value">
+              {web3.utils.fromWei(t.value.toString())} ETH
+            </span>
           </li>
         ))}
       </ul>

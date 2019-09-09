@@ -61,7 +61,10 @@ const App: React.FC = () => {
 
   const updateBalance = async () => {
     const balance = await getAccountBalance(address, network);
-    dispatch({ type: "updateBalance", data: { balance: balance.result } });
+    dispatch({
+      type: "updateBalance",
+      data: { balance: balance.result }
+    });
   };
 
   const updateTransactions = async () => {
@@ -95,7 +98,7 @@ const App: React.FC = () => {
           balance={balance}
           onAddressClick={() => setShowModal(true)}
         />
-        <TransactionsList transactions={transactions} />
+        <TransactionsList transactions={transactions} network={network} />
         <AddressModal
           visible={showModal}
           handleClose={() => setShowModal(false)}

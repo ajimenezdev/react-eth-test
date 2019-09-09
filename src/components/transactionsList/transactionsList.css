@@ -1,0 +1,44 @@
+.list {
+  padding: 15px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.list-header {
+  font-weight: bold;
+}
+
+.list-item:hover {
+  background-color: rgba(231, 234, 243, 0.4);
+}
+
+.list-nonce {
+  font-weight: bold;
+}
+
+.list-hash {
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-from {
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-to {
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-value {
+  width: 10%;
+}
