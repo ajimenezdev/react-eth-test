@@ -1,0 +1,32 @@
+.App-footer {
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-author {
+  color: white;
+}
+
+.footer-author a {
+  color: white;
+}
+
+.footer-sourceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-sourceText {
+  color: white;
+  font-size: 12px;
+}
+
+.footer-sourceIcon {
+  color: white;
+  font-size: 18px;
+}
