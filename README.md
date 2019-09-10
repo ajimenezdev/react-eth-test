@@ -1,4 +1,4 @@
-# Rect-Ethereum Test
+# React-Ethereum Test
 
 ## Introduction
 This project was created as a test for an interview requet.
