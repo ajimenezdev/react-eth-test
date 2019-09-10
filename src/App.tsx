@@ -15,11 +15,17 @@ const initialState = {
   network: "",
   address: "",
   balance: 0,
-  transactions: []
+  fetchingBalance: false,
+  transactions: [],
+  fetchingTx: false
 };
 
 type ActionType = {
-  type: "updateSearch" | "updateBalance" | "updateTransactions";
+  type:
+    | "fetchStarted"
+    | "updateSearch"
+    | "updateBalance"
+    | "updateTransactions";
   data: any;
 };
 
@@ -27,11 +33,20 @@ type State = {
   address: string;
   network: string;
   balance: number;
+  fetchingBalance: boolean;
   transactions: Array<any>;
+  fetchingTx: boolean;
 };
 
 function reducer(state: State, action: ActionType) {
   switch (action.type) {
+    case "fetchStarted":
+      return {
+        ...state,
+        fetchingBalance: true,
+        fetchingTx: true
+      };
+
     case "updateSearch":
       return {
         ...state,
@@ -41,12 +56,14 @@ function reducer(state: State, action: ActionType) {
     case "updateBalance":
       return {
         ...state,
-        balance: action.data.balance
+        balance: action.data.balance,
+        fetchingBalance: false
       };
     case "updateTransactions":
       return {
         ...state,
-        transactions: action.data.transactions
+        transactions: action.data.transactions,
+        fetchingTx: false
       };
 
     default:
@@ -58,7 +75,14 @@ const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [addressModal, setAddressModal] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { network, address, balance, transactions } = state;
+  const {
+    network,
+    address,
+    balance,
+    transactions,
+    fetchingBalance,
+    fetchingTx
+  } = state;
 
   const updateBalance = async () => {
     const balance = await getAccountBalance(address, network);
@@ -78,6 +102,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (network && address) {
+      dispatch({ type: "fetchStarted", data: {} });
       updateBalance();
       updateTransactions();
     }
@@ -102,12 +127,14 @@ const App: React.FC = () => {
           network={network}
           balance={balance}
           onAddressClick={() => handleShowModal(address)}
+          updating={fetchingBalance}
         />
         <TransactionsList
           transactions={transactions}
           address={address}
           network={network}
           onAddressClick={(address: string) => handleShowModal(address)}
+          updating={fetchingTx}
         />
         <AddressModal
           visible={showModal}

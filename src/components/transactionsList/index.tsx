@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Paper, TextField, MenuItem } from "@material-ui/core";
+import {
+  Paper,
+  TextField,
+  MenuItem,
+  CircularProgress
+} from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import web3 from "web3";
 import { getTransactionURL, getAddressURL } from "../../data/ethereumData";
@@ -10,6 +15,7 @@ interface ListProps {
   transactions: Array<any>;
   address: string;
   network: string;
+  updating: boolean;
   onAddressClick: Function;
 }
 
@@ -17,6 +23,7 @@ const TransactionsList: React.FC<ListProps> = ({
   transactions,
   address,
   network,
+  updating,
   onAddressClick
 }) => {
   const [filterFromTo, setFilterFromTo] = useState("from");
@@ -39,6 +46,7 @@ const TransactionsList: React.FC<ListProps> = ({
     }
     return filteredTx.slice(0, displayCount);
   };
+  const displayTransactions = getTransactions();
   return (
     <Paper className="body-list">
       <div className="list-filters">
@@ -82,7 +90,9 @@ const TransactionsList: React.FC<ListProps> = ({
           <span className="list-to">To</span>
           <span className="list-value">Value</span>
         </li>
-        {getTransactions().map(t => (
+        {updating && <CircularProgress />}
+        {displayTransactions.length === 0 && <p>There are not transactions</p>}
+        {displayTransactions.map(t => (
           <li key={t.hash} className="list-item">
             <span className="list-nonce">{t.nonce}</span>
             <a

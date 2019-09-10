@@ -1,5 +1,11 @@
 import React from "react";
-import { Paper, Badge, Icon, IconButton } from "@material-ui/core";
+import {
+  Paper,
+  Badge,
+  Icon,
+  IconButton,
+  CircularProgress
+} from "@material-ui/core";
 import web3 from "web3";
 import { getAddressURL } from "../../data/ethereumData";
 import "./addressSummary.css";
@@ -8,6 +14,7 @@ interface SummaryProps {
   address: string;
   network: string;
   balance: number;
+  updating: boolean;
   onAddressClick: Function;
 }
 
@@ -15,6 +22,7 @@ const AddressSummary: React.FC<SummaryProps> = ({
   address,
   network,
   balance,
+  updating,
   onAddressClick
 }) => {
   const badgeText = network === "Mainnet" ? "Main" : "Test";
@@ -57,7 +65,10 @@ const AddressSummary: React.FC<SummaryProps> = ({
       </div>
       <div className="summary-balanceContainer">
         <p>Balance:</p>
-        <p>{web3.utils.fromWei(balance.toString())} ETH</p>
+        {updating && <CircularProgress />}
+        {!updating && address && (
+          <p>{web3.utils.fromWei(balance.toString())} ETH</p>
+        )}
       </div>
     </Paper>
   );
