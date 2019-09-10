@@ -5,10 +5,17 @@
 }
 
 .modal-content {
+  position: relative;
   width: 450px;
   height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.modal-closeIcon {
+  position: absolute !important;
+  top: 0;
+  right: 0;
 }

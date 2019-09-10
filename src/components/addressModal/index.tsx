@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Modal } from "@material-ui/core";
+import { Paper, Modal, IconButton, Icon } from "@material-ui/core";
 import QRCode from "qrcode.react";
 import "./addressModal.css";
 
@@ -17,6 +17,13 @@ const AddressModal: React.FC<ModalProps> = ({
   return (
     <Modal open={visible} onClose={() => handleClose()} className="modal">
       <Paper className="modal-content">
+        <IconButton
+          aria-label="close"
+          className="modal-closeIcon"
+          onClick={() => handleClose()}
+        >
+          <Icon>close</Icon>
+        </IconButton>
         <QRCode value={address} size={256} />
         <p>{address}</p>
       </Paper>
