@@ -3,3 +3,9 @@
   top: 14px;
   float: right;
 }
+
+@media screen and (max-width: 450px) {
+  .summary-addressContainer {
+    font-size: 13px;
+  }
+}

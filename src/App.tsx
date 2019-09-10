@@ -70,10 +70,9 @@ const App: React.FC = () => {
 
   const updateTransactions = async () => {
     const transactionsObj = await getAccountTransactions(address, network);
-    const transactions = transactionsObj.result
-      .filter((t: any) => t.from.toUpperCase() === address.toUpperCase())
-      .sort((a: any, b: any) => (a.nonce < b.nonce ? "1" : "-1"))
-      .slice(0, 10);
+    const transactions = transactionsObj.result.sort((a: any, b: any) =>
+      parseInt(a.nonce) < parseInt(b.nonce) ? "1" : "-1"
+    );
     dispatch({ type: "updateTransactions", data: { transactions } });
   };
 
@@ -106,6 +105,7 @@ const App: React.FC = () => {
         />
         <TransactionsList
           transactions={transactions}
+          address={address}
           network={network}
           onAddressClick={(address: string) => handleShowModal(address)}
         />

@@ -2,11 +2,27 @@
   padding: 15px;
 }
 
+.list-filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .list-item {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid grey;
+}
+
+.list-filterItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-countFilter {
+  width: 100px;
 }
 
 .list-header {
@@ -41,4 +57,13 @@
 
 .list-value {
   width: 10%;
+}
+
+@media screen and (max-width: 800px) {
+  .list-filters {
+    flex-direction: column;
+  }
+  .list-filterItem {
+    justify-content: center;
+  }
 }
