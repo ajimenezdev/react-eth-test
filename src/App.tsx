@@ -10,66 +10,14 @@ import {
   AddressModal
 } from "./components";
 import { getAccountBalance, getAccountTransactions } from "./data/ethereumData";
-
-const initialState = {
-  network: "",
-  address: "",
-  balance: 0,
-  fetchingBalance: false,
-  transactions: [],
-  fetchingTx: false
-};
-
-type ActionType = {
-  type:
-    | "fetchStarted"
-    | "updateSearch"
-    | "updateBalance"
-    | "updateTransactions";
-  data: any;
-};
-
-type State = {
-  address: string;
-  network: string;
-  balance: number;
-  fetchingBalance: boolean;
-  transactions: Array<any>;
-  fetchingTx: boolean;
-};
-
-function reducer(state: State, action: ActionType) {
-  switch (action.type) {
-    case "fetchStarted":
-      return {
-        ...state,
-        fetchingBalance: true,
-        fetchingTx: true
-      };
-
-    case "updateSearch":
-      return {
-        ...state,
-        network: action.data.network,
-        address: action.data.address
-      };
-    case "updateBalance":
-      return {
-        ...state,
-        balance: action.data.balance,
-        fetchingBalance: false
-      };
-    case "updateTransactions":
-      return {
-        ...state,
-        transactions: action.data.transactions,
-        fetchingTx: false
-      };
-
-    default:
-      throw new Error();
-  }
-}
+import {
+  reducer,
+  initialState,
+  dispatchFetchStarted,
+  dispatchUpdateBalance,
+  dispatchUpdateTransactions,
+  dispatchUpdateSearch
+} from "./data/ethereumReducer";
 
 const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -86,10 +34,7 @@ const App: React.FC = () => {
 
   const updateBalance = async () => {
     const balance = await getAccountBalance(address, network);
-    dispatch({
-      type: "updateBalance",
-      data: { balance: balance.result }
-    });
+    dispatchUpdateBalance(dispatch, balance.result);
   };
 
   const updateTransactions = async () => {
@@ -97,12 +42,12 @@ const App: React.FC = () => {
     const transactions = transactionsObj.result.sort((a: any, b: any) =>
       parseInt(a.nonce) < parseInt(b.nonce) ? "1" : "-1"
     );
-    dispatch({ type: "updateTransactions", data: { transactions } });
+    dispatchUpdateTransactions(dispatch, transactions);
   };
 
   useEffect(() => {
     if (network && address) {
-      dispatch({ type: "fetchStarted", data: {} });
+      dispatchFetchStarted(dispatch);
       updateBalance();
       updateTransactions();
     }
@@ -119,7 +64,7 @@ const App: React.FC = () => {
       <div className="App-body">
         <Form
           onUpdateSearch={(address: string, network: string) =>
-            dispatch({ type: "updateSearch", data: { address, network } })
+            dispatchUpdateSearch(dispatch, address, network)
           }
         />
         <AddressSummary
