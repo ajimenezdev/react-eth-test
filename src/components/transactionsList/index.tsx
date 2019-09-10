@@ -8,9 +8,14 @@ import "./transactionsList.css";
 interface ListProps {
   transactions: Array<any>;
   network: string;
+  onAddressClick: Function;
 }
 
-const TransactionsList: React.FC<ListProps> = ({ transactions, network }) => {
+const TransactionsList: React.FC<ListProps> = ({
+  transactions,
+  network,
+  onAddressClick
+}) => {
   return (
     <Paper className="body-list">
       <ul className="list">
@@ -33,7 +38,11 @@ const TransactionsList: React.FC<ListProps> = ({ transactions, network }) => {
             </a>
             <span className="list-from">
               <a
-                href={getAddressURL(t.from || t.contractAddress, network)}
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  onAddressClick(t.from);
+                }}
                 target="_blank"
                 className="list-hash"
               >
@@ -42,7 +51,11 @@ const TransactionsList: React.FC<ListProps> = ({ transactions, network }) => {
             </span>
             <span className="list-to">
               <a
-                href={getAddressURL(t.to || t.contractAddress, network)}
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  onAddressClick(t.to || t.contractAddress);
+                }}
                 target="_blank"
                 className="list-hash"
               >

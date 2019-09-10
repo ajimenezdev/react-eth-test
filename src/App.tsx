@@ -56,6 +56,7 @@ function reducer(state: State, action: ActionType) {
 
 const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [addressModal, setAddressModal] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
   const { network, address, balance, transactions } = state;
 
@@ -83,6 +84,11 @@ const App: React.FC = () => {
     }
   }, [network, address]);
 
+  const handleShowModal = (address: string) => {
+    setAddressModal(address);
+    setShowModal(true);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -96,13 +102,18 @@ const App: React.FC = () => {
           address={address}
           network={network}
           balance={balance}
-          onAddressClick={() => setShowModal(true)}
+          onAddressClick={() => handleShowModal(address)}
         />
-        <TransactionsList transactions={transactions} network={network} />
+        <TransactionsList
+          transactions={transactions}
+          network={network}
+          onAddressClick={(address: string) => handleShowModal(address)}
+        />
         <AddressModal
           visible={showModal}
+          address={addressModal}
+          network={network}
           handleClose={() => setShowModal(false)}
-          address={address}
         />
       </div>
       <Footer />

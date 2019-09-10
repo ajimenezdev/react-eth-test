@@ -35,14 +35,26 @@
 
 .body-form {
   grid-area: form;
+  max-width: 98vw;
 }
 
 .body-summary {
   grid-area: summary;
+  max-width: 98vw;
+  overflow: hidden;
 }
 
 .body-list {
   grid-area: list;
+  max-width: 98vw;
+}
+
+@media screen and (max-width: 820px) {
+  .App-body {
+    grid-template-columns: 1fr;
+    grid-template-areas: "form" "summary" "list";
+    grid-template-rows: 250px 200px auto;
+  }
 }
 
 .App-footer {
