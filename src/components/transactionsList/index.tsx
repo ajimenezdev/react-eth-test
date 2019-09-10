@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import web3 from "web3";
-import { getTransactionURL, getAddressURL } from "../../data/ethereumData";
+import { getTransactionURL } from "../../data/ethereumData";
 
 import "./transactionsList.css";
 
@@ -98,6 +98,7 @@ const TransactionsList: React.FC<ListProps> = ({
             <a
               href={getTransactionURL(t.hash, network)}
               target="_blank"
+              rel="noopener noreferrer"
               className="list-hash"
             >
               {t.hash}
@@ -110,6 +111,7 @@ const TransactionsList: React.FC<ListProps> = ({
                   onAddressClick(t.from);
                 }}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="list-hash"
               >
                 {t.from}

@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import {
   Header,
@@ -19,6 +18,26 @@ import {
   dispatchUpdateSearch
 } from "./data/ethereumReducer";
 
+const updateBalance = async (
+  address: string,
+  network: string,
+  dispatch: any
+) => {
+  const balance = await getAccountBalance(address, network);
+  dispatchUpdateBalance(dispatch, balance.result);
+};
+
+const updateTransactions = async (
+  address: string,
+  network: string,
+  dispatch: any
+) => {
+  const transactionsObj = await getAccountTransactions(address, network);
+  const transactions = transactionsObj.result.sort((a: any, b: any) =>
+    parseInt(a.nonce) < parseInt(b.nonce) ? "1" : "-1"
+  );
+  dispatchUpdateTransactions(dispatch, transactions);
+};
 const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [addressModal, setAddressModal] = useState("");
@@ -32,24 +51,11 @@ const App: React.FC = () => {
     fetchingTx
   } = state;
 
-  const updateBalance = async () => {
-    const balance = await getAccountBalance(address, network);
-    dispatchUpdateBalance(dispatch, balance.result);
-  };
-
-  const updateTransactions = async () => {
-    const transactionsObj = await getAccountTransactions(address, network);
-    const transactions = transactionsObj.result.sort((a: any, b: any) =>
-      parseInt(a.nonce) < parseInt(b.nonce) ? "1" : "-1"
-    );
-    dispatchUpdateTransactions(dispatch, transactions);
-  };
-
   useEffect(() => {
     if (network && address) {
       dispatchFetchStarted(dispatch);
-      updateBalance();
-      updateTransactions();
+      updateBalance(address, network, dispatch);
+      updateTransactions(address, network, dispatch);
     }
   }, [network, address]);
 

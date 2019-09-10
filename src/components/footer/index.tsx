@@ -7,7 +7,11 @@ const Footer: React.FC = () => {
     <footer className="App-footer">
       <p className="footer-author">
         created by:
-        <a href="https://alvarojimenezmartin.com" target="_blank">
+        <a
+          href="https://alvarojimenezmartin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Alvaro Jimenez Martin
         </a>
       </p>
