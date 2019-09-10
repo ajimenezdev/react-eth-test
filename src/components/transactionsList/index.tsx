@@ -90,10 +90,10 @@ const TransactionsList: React.FC<ListProps> = ({
           <span className="list-to">To</span>
           <span className="list-value">Value</span>
         </li>
-        {updating && <CircularProgress />}
+        {updating && <CircularProgress aria-label="loading" />}
         {displayTransactions.length === 0 && <p>There are not transactions</p>}
         {displayTransactions.map(t => (
-          <li key={t.hash} className="list-item">
+          <li key={t.hash} className="list-item" aria-label="list-tx-item">
             <span className="list-nonce">{t.nonce}</span>
             <a
               href={getTransactionURL(t.hash, network)}
@@ -105,6 +105,7 @@ const TransactionsList: React.FC<ListProps> = ({
             </a>
             <span className="list-from">
               <a
+                aria-label="address_link"
                 href="#"
                 onClick={e => {
                   e.preventDefault();
@@ -119,6 +120,7 @@ const TransactionsList: React.FC<ListProps> = ({
             </span>
             <span className="list-to">
               <a
+                aria-label="address_link"
                 href="#"
                 onClick={e => {
                   e.preventDefault();

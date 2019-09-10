@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<footer
+  className="App-footer"
+>
+  <p
+    className="footer-author"
+  >
+    created by:
+    <a
+      href="https://alvarojimenezmartin.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Alvaro Jimenez Martin
+    </a>
+  </p>
+  <button
+    aria-label="open"
+    className="MuiButtonBase-root MuiIconButton-root"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiIconButton-label"
+    >
+      <div
+        className="footer-sourceContainer"
+      >
+        <span
+          aria-hidden={true}
+          className="material-icons MuiIcon-root footer-sourceIcon"
+        >
+          code
+        </span>
+        <span
+          className="footer-sourceText"
+        >
+          Source Code
+        </span>
+      </div>
+    </span>
+  </button>
+</footer>
+`;

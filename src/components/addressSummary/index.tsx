@@ -65,7 +65,7 @@ const AddressSummary: React.FC<SummaryProps> = ({
       </div>
       <div className="summary-balanceContainer">
         <p>Balance:</p>
-        {updating && <CircularProgress />}
+        {updating && <CircularProgress aria-label="loading" />}
         {!updating && address && (
           <p>{web3.utils.fromWei(balance.toString())} ETH</p>
         )}

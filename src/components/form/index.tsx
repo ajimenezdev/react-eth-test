@@ -46,7 +46,7 @@ const Form: React.FC<FormProps> = ({ onUpdateSearch }) => {
       <form className="form">
         <TextField
           label="Address"
-          // className={classes.textField}
+          inputProps={{ "aria-label": "address" }}
           value={address}
           error={!!addressError}
           helperText={addressError}
@@ -58,7 +58,7 @@ const Form: React.FC<FormProps> = ({ onUpdateSearch }) => {
         <TextField
           select
           label="Select Network"
-          // className={classes.textField}
+          inputProps={{ "aria-label": "select_network" }}
           value={network}
           error={!!networkError}
           helperText={networkError}
@@ -67,10 +67,19 @@ const Form: React.FC<FormProps> = ({ onUpdateSearch }) => {
           }
           margin="normal"
         >
-          <MenuItem value="Rinkeby">Rinkeby</MenuItem>
-          <MenuItem value="Mainnet">Mainnet</MenuItem>
+          <MenuItem value="Rinkeby" aria-label="select_network_rinkeby">
+            Rinkeby
+          </MenuItem>
+          <MenuItem value="Mainnet" aria-label="select_network_mainnent">
+            Mainnet
+          </MenuItem>
         </TextField>
-        <Button variant="contained" color="primary" onClick={search}>
+        <Button
+          aria-label="search"
+          variant="contained"
+          color="primary"
+          onClick={search}
+        >
           Search
         </Button>
       </form>

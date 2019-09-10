@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing when no arguments 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 body-list MuiPaper-rounded"
+>
+  <div
+    className="list-filters"
+  >
+    <div
+      className="list-filterItem"
+    >
+      <span>
+        Select Transaction Source:
+      </span>
+      <div
+        className="MuiToggleButtonGroup-root"
+        role="group"
+      >
+        <button
+          aria-pressed={false}
+          className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+          value="both"
+        >
+          <span
+            className="MuiToggleButton-label"
+          >
+            Both
+          </span>
+        </button>
+        <button
+          aria-pressed={true}
+          className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped Mui-selected"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+          value="from"
+        >
+          <span
+            className="MuiToggleButton-label"
+          >
+            From
+          </span>
+        </button>
+        <button
+          aria-pressed={false}
+          className="MuiButtonBase-root MuiToggleButton-root MuiToggleButtonGroup-grouped"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+          value="to"
+        >
+          <span
+            className="MuiToggleButton-label"
+          >
+            To
+          </span>
+        </button>
+      </div>
+    </div>
+    <div
+      className="list-filterItem"
+    >
+      <span>
+        Show last:
+      </span>
+      <div
+        className="MuiFormControl-root MuiTextField-root list-countFilter MuiFormControl-marginNormal"
+      >
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <div
+            aria-haspopup="listbox"
+            className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            10
+          </div>
+          <input
+            type="hidden"
+            value={10}
+          />
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiSelect-icon"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul
+    className="list"
+  >
+    <li
+      className="list-item list-header"
+    >
+      <span
+        className="list-nonce"
+      >
+        Nonce
+      </span>
+      <span
+        className="list-hash"
+      >
+        T.Hash
+      </span>
+      <span
+        className="list-from"
+      >
+        From
+      </span>
+      <span
+        className="list-to"
+      >
+        To
+      </span>
+      <span
+        className="list-value"
+      >
+        Value
+      </span>
+    </li>
+    <p>
+      There are not transactions
+    </p>
+  </ul>
+</div>
+`;

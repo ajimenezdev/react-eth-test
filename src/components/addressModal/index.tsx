@@ -27,8 +27,10 @@ const AddressModal: React.FC<ModalProps> = ({
         >
           <Icon>close</Icon>
         </IconButton>
-        <QRCode value={address} size={256} />
-        <p className="modal-address">{address}</p>
+        <QRCode value={address} size={256} aria-label="qrcode" />
+        <p className="modal-address" aria-label="address">
+          {address}
+        </p>
         <div className="modal-actions">
           <IconButton
             aria-label="open"
